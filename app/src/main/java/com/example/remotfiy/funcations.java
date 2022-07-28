@@ -38,8 +38,6 @@ public class funcations extends AppCompatActivity {
         s_fn = findViewById(R.id.s_flashon);
         s_fo = findViewById(R.id.s_flashoff);
         s_no_sound = findViewById(R.id.s_no_sound);
-        wifion = findViewById(R.id.wifion);
-        wifioff = findViewById(R.id.wifioff);
         moden = findViewById(R.id.mode_n);
         modev = findViewById(R.id.mode_v);
         modes = findViewById(R.id.moded_s);
@@ -57,8 +55,6 @@ public class funcations extends AppCompatActivity {
         modes.setChecked(sharedPreferences.getBoolean("value7",false));
         moden.setChecked(sharedPreferences.getBoolean("value8",false));
         help.setChecked(sharedPreferences.getBoolean("value9",false));
-        wifioff.setChecked(sharedPreferences.getBoolean("value10",false));
-        wifion.setChecked(sharedPreferences.getBoolean("value11",false));
         loc.setChecked(sharedPreferences.getBoolean("value12",false));
 
        // DB = new DBcom(this );
@@ -282,49 +278,7 @@ public class funcations extends AppCompatActivity {
             }
         });
 
-        wifioff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (wifioff.isChecked()) {
-                    // boolean a = DB.update("s_fn", "true");
-                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE
-                    ).edit();
-                    editor.putBoolean("value10", true);
-                    editor.apply();
 
-                    wifioff.setChecked(true);
-                } else {
-                    // boolean a = DB.update("s_fn", "false");
-                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE
-                    ).edit();
-                    editor.putBoolean("value10", false);
-                    editor.apply();
-                    wifioff.setChecked(false);
-                }
-            }
-        });
-
-        wifion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (wifion.isChecked()) {
-                    // boolean a = DB.update("s_fn", "true");
-                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE
-                    ).edit();
-                    editor.putBoolean("value11", true);
-                    editor.apply();
-
-                    wifion.setChecked(true);
-                } else {
-                    // boolean a = DB.update("s_fn", "false");
-                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE
-                    ).edit();
-                    editor.putBoolean("value11", false);
-                    editor.apply();
-                    wifion.setChecked(false);
-                }
-            }
-        });
 
         loc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -414,4 +368,5 @@ public class funcations extends AppCompatActivity {
 //            }
 //        });
     }
+
 }

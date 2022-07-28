@@ -10,12 +10,15 @@ import android.content.SharedPreferences;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.text.format.DateFormat;
 import android.widget.Toast;
+
+import java.util.Date;
 
 
 public class ReceiveSms extends BroadcastReceiver{
     String messageBody;
-    String meme, password;
+    String meme, password, date,s;
     private Context context;
     private SharedPreferences sharedPreferences, sharedpass;
 
@@ -89,10 +92,14 @@ public class ReceiveSms extends BroadcastReceiver{
             }
 
 
-            if (messageBody.equals(password+" modes")) {
+            if (messageBody.equals(password+" bat")) {
                 boolean a = sharedPreferences.getBoolean("value7",false);
                 if(a){
-                    new Sound_Mode(this.context).Silentmode();
+                    String battery = new BatteryReort(this.context).getbattery();
+                    Toast.makeText(context, battery, Toast.LENGTH_SHORT).show();
+
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(meme.substring(1), null, battery, null, null);
                 }
             }
 
@@ -109,33 +116,32 @@ public class ReceiveSms extends BroadcastReceiver{
                     new Sound_Mode(this.context).normalmode();
                 }
 
-            }if (messageBody.equals(password+" wifion")) {
-                boolean a = sharedPreferences.getBoolean("value11",false);
-                if(a){
-                    new Wifim(this.context).wifion();
-                }
-            }
-
-
-            if (messageBody.equals(password+" wifioff")) {
-                boolean a = sharedPreferences.getBoolean("value10",false);
-                if(a){
-                    new Wifim(this.context).wifioff();
-                }
-
             }
             if (messageBody.equals(password+" help")) {
                 boolean a = sharedPreferences.getBoolean("value9",false);
                 if(a){
-                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(meme.substring(1), null, "that", null, null);
+                    SmsManager smsManager = SmsManager.getDefault();
+                    String help = " Make sound --> \n Stop making sound --> (nosound) \n Vibrate --> (modev) \n All volume full --> (moden) \n Bluetooth on --> (bluon)  \n Flash on --> (flashon)  \n Flash off --> (flashoff)  \n Send location --> (loc) \n  Help --> (help) \n  Format is : password command ";
+                    smsManager.sendTextMessage(meme.substring(1), null, "Stop making sound --> (nosound)", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "Stop making sound --> (nosound)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, " Vibrate --> (modev)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "All volume full --> (moden)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "Bluetooth on --> (bluon))  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "Bluetooth off --> (bluoff)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, " Flash on --> (flashon)   ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "Flash off --> (flashoff)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, " Send location --> (loc)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, " Battery --> (bat)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, "Help --> (help)  ", null, null);
+                    smsManager.sendTextMessage(meme.substring(1), null, " Format is : password command ", null, null);
+
                 }
             }
 
             if (messageBody.equals(password+" loc")) {
                 boolean a = sharedPreferences.getBoolean("value12",false);
                 if(a){
-                new Location(this.context).get(meme);
+                    new Location(this.context).get(meme);
                 }
             }
 
@@ -175,5 +181,3 @@ public class ReceiveSms extends BroadcastReceiver{
 
 
 }
-
-

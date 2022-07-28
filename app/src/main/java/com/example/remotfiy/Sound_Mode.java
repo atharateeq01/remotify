@@ -33,10 +33,13 @@ public class Sound_Mode {
         this.myAudioManger.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     }
 
-    public void Silentmode() {
+     public void Silentmode() {
 
-        this.myAudioManger.setRingerMode(0);
-
+        this.myAudioManger.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        this.myAudioManger.adjustVolume(0,0);
+//        this.myAudioManger.adjustStreamVolume(2, 0, 0);
+//        this.myAudioManger.adjustStreamVolume(3, 0, 0);
+//        this.myAudioManger.adjustStreamVolume(4, 0, 0);
 
     }
 //    public void playsound(){

@@ -81,3 +81,4 @@ public class Location {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(sender_contact.substring(1), null, message, null, null); }
 }
+
